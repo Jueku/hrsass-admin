@@ -1,36 +1,15 @@
 import request from '@/utils/request'
-
-/**
- * 登录接口
- * @param {*} loginForm 参数
- * @returns
- */
-export const loginApi = (loginForm) => {
+export function login(data) {
   return request({
+    method: 'post',
     url: '/sys/login',
-    method: 'POST',
-    data: loginForm
+    data
   })
 }
+export function getInfo(token) {
 
-/**
- * 获取用户信息
- * @returns
- */
-export const getUserProfileApi = () => {
-  return request({
-    url: '/sys/profile',
-    method: 'POST'
-  })
 }
 
-/**
- * 获取用户信息（含头像）
- * @param {*} id
- * @returns
- */
-export const getUserAvatarApi = (id) => {
-  return request({
-    url: `/sys/user/${id}`
-  })
+export function logout() {
+
 }

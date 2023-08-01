@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '人力资源管理平台',
+  title: '人力资源管理平台(自己做版本)',
 
   /**
    * @type {boolean} true | false

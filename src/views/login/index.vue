@@ -123,23 +123,15 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(async(flag) => {
-        if (!flag) return
-        // 接口请求之前开始 进行加载中，响应之后 取消加载中的状态
-        this.loading = true
-        try {
-          await this.$store.dispatch('user/login', this.loginForm)
-          // 跳转的时候 拿到响应结果。如果用户名密码正确再跳转到首页，如果错误提示
-          // 从哪个页面退出的就应该跳转哪个页面
-          const url = this.$route.query.redirect
-          if (url) {
-            this.$router.push(url)
-          } else {
-            this.$router.push('/')
-          }
-        } finally {
-          // 不管你前边执行的try还是catch 最后都会执行finally
-          this.loading = false
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          const loginUrl = 'http://ihrm-java.itheima.net/api/sys/login'
+          this.$request.post(loginUrl, this.loginForm).then(
+            res => {
+              console.log(res)
+            }
+          )
         }
       })
     }
